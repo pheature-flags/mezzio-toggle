@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Pheature\Community\Mezzio;
+namespace Pheature\Test\Community\Mezzio\Fixtures;
 
 use Mezzio\Application;
+use Pheature\Community\Mezzio\CommandRunnerFactory;
+use Pheature\Community\Mezzio\RouterDelegator;
+use Pheature\Community\Mezzio\ToggleConfigFactory;
 use Pheature\Core\Toggle\Read\ChainToggleStrategyFactory;
 use Pheature\Core\Toggle\Read\FeatureFinder;
 use Pheature\Core\Toggle\Write\FeatureRepository;
-use Pheature\Crud\Psr11\Toggle\SetStrategyFactory;
 use Pheature\Crud\Psr11\Toggle\CreateFeatureFactory;
 use Pheature\Crud\Psr11\Toggle\DeleteFeatureFactory;
 use Pheature\Crud\Psr11\Toggle\DisableFeatureFactory;
@@ -21,18 +23,19 @@ use Pheature\Crud\Psr11\Toggle\PatchFeatureFactory;
 use Pheature\Crud\Psr11\Toggle\PostFeatureFactory;
 use Pheature\Crud\Psr11\Toggle\RemoveFeatureFactory;
 use Pheature\Crud\Psr11\Toggle\RemoveStrategyFactory;
+use Pheature\Crud\Psr11\Toggle\SetStrategyFactory;
 use Pheature\Crud\Psr11\Toggle\ToggleConfig;
 use Pheature\Crud\Psr7\Toggle\DeleteFeature;
 use Pheature\Crud\Psr7\Toggle\GetFeature;
 use Pheature\Crud\Psr7\Toggle\GetFeatures;
 use Pheature\Crud\Psr7\Toggle\PatchFeature;
 use Pheature\Crud\Psr7\Toggle\PostFeature;
-use Pheature\Crud\Toggle\Handler\SetStrategy;
 use Pheature\Crud\Toggle\Handler\CreateFeature;
 use Pheature\Crud\Toggle\Handler\DisableFeature;
 use Pheature\Crud\Toggle\Handler\EnableFeature;
 use Pheature\Crud\Toggle\Handler\RemoveFeature;
 use Pheature\Crud\Toggle\Handler\RemoveStrategy;
+use Pheature\Crud\Toggle\Handler\SetStrategy;
 use Pheature\Model\Toggle\EnableByMatchingIdentityId;
 use Pheature\Model\Toggle\EnableByMatchingSegment;
 use Pheature\Model\Toggle\IdentitySegment;
@@ -41,50 +44,21 @@ use Pheature\Model\Toggle\StrategyFactory;
 use Pheature\Model\Toggle\StrictMatchingSegment;
 use Pheature\Sdk\CommandRunner;
 
-use function array_merge;
-use function array_reduce;
-
-final class ToggleConfigProvider
+final class ToggleConfiguration
 {
-    /**
-     * @return array<string, mixed>
-     */
-    public function __invoke(): array
+    public static function create(): array
     {
-        $pheatureFlagsConfig = $this->pheatureFlagsConfig();
-
-        /** @var array<array<string, string>> $strategyTypes */
-        $strategyTypes = $pheatureFlagsConfig['strategy_types'];
-
-        $strategyTypeAliases = array_reduce(
-            $strategyTypes,
-            static function (array $strategies, array $current) {
-                $strategies[(string) $current['type']] = (string) $current['factory_id'];
-
-                return $strategies;
-            },
-            []
-        );
-
-        /** @var array<array<string, string>> $segmentTypes */
-        $segmentTypes = $pheatureFlagsConfig['segment_types'];
-
-        $segmentTypeAliases = array_reduce(
-            $segmentTypes,
-            static function (array $segments, array $current) {
-                $segments[(string) $current['type']] = (string) $current['factory_id'];
-
-                return $segments;
-            },
-            []
-        );
-
         return [
             'dependencies' => [
                 'invokables' => [
                     RouterDelegator::class => RouterDelegator::class,
                 ],
-                'aliases' => array_merge($strategyTypeAliases, $segmentTypeAliases),
+                'aliases' => [
+                    'enable_by_matching_segment' => StrategyFactory::class,
+                    'enable_by_matching_identity_id' => StrategyFactory::class,
+                    'identity_segment' => SegmentFactory::class,
+                    'strict_matching_segment' => SegmentFactory::class,
+                ],
                 'factories' => [
                     // Config
                     ToggleConfig::class => ToggleConfigFactory::class,
@@ -118,38 +92,32 @@ final class ToggleConfigProvider
                     ],
                 ],
             ],
-            'pheature_flags' => $pheatureFlagsConfig,
-        ];
-    }
-
-    /** @return array<string,mixed> */
-    private function pheatureFlagsConfig(): array
-    {
-        return [
-            'api_enabled' => false,
-            'api_prefix' => '',
-            'driver' => 'inmemory',
-            'segment_types' => [
-                [
-                    'type' => IdentitySegment::NAME,
-                    'factory_id' => SegmentFactory::class
+            'pheature_flags' => [
+                'api_enabled' => false,
+                'api_prefix' => '',
+                'driver' => ToggleConfig::DRIVER_IN_MEMORY,
+                'segment_types' => [
+                    [
+                        'type' => IdentitySegment::NAME,
+                        'factory_id' => SegmentFactory::class
+                    ],
+                    [
+                        'type' => StrictMatchingSegment::NAME,
+                        'factory_id' => SegmentFactory::class
+                    ]
                 ],
-                [
-                    'type' => StrictMatchingSegment::NAME,
-                    'factory_id' => SegmentFactory::class
-                ]
+                'strategy_types' => [
+                    [
+                        'type' => EnableByMatchingSegment::NAME,
+                        'factory_id' => StrategyFactory::class
+                    ],
+                    [
+                        'type' => EnableByMatchingIdentityId::NAME,
+                        'factory_id' => StrategyFactory::class
+                    ],
+                ],
+                'toggles' => [],
             ],
-            'strategy_types' => [
-                [
-                    'type' => EnableByMatchingSegment::NAME,
-                    'factory_id' => StrategyFactory::class
-                ],
-                [
-                    'type' => EnableByMatchingIdentityId::NAME,
-                    'factory_id' => StrategyFactory::class
-                ],
-            ],
-            'toggles' => [],
         ];
     }
 }

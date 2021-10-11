@@ -27,7 +27,7 @@
     "require-dev": {
         "icanhazstring/composer-unused": "^0.7.5",
         "infection/infection": "^0.23.0",
-        "pheature/php-sdk": "^0.1",
+        "pheature/php-sdk": "^0.1 || ^0.2",
         "pheature/toggle-crud-psr7-api": "^0.1",
         "phpro/grumphp": "^1.0",
         "phpstan/phpstan": "^0.12",

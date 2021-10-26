@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.1.3](https://github.com/pheature-flags/mezzio-toggle/tree/v0.1.3) (2021-10-26)
+
+[Full Changelog](https://github.com/pheature-flags/mezzio-toggle/compare/v0.1.2...v0.1.3)
+
+**Closed issues:**
+
+- Upgrade pheature dependencies to version ^0.2 [\#6](https://github.com/pheature-flags/mezzio-toggle/issues/6)
+
+**Merged pull requests:**
+
+- \[\#6\] Upgrade pheature dependencies to version ^0.2 [\#8](https://github.com/pheature-flags/mezzio-toggle/pull/8) (@xserrat)
+
 ## [v0.1.2](https://github.com/pheature-flags/pheature-flags/tree/v0.1.2)
 
 [Full Changelog](https://github.com/pheature-flags/pheature-flags/compare/v0.1.1...v0.1.2)

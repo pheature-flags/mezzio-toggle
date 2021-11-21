@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.3.0](https://github.com/pheature-flags/mezzio-toggle/tree/0.3.0)
+
+[Full Changelog](https://github.com/pheature-flags/mezzio-toggle/compare/v0.1.3...0.3.0)
+
+**Implemented enhancements:**
+
+- \[mezzio-toggle\] Update PhpStan to version 1 and level 9 [\#11](https://github.com/pheature-flags/mezzio-toggle/issues/11)
+- \[mezzio-toggle\] Add PHP 8.1 support [\#5](https://github.com/pheature-flags/mezzio-toggle/issues/5)
+- \[mezzio-toggle\] Update issue template for bugs using new issue form in a YAML file [\#3](https://github.com/pheature-flags/mezzio-toggle/issues/3)
+- \[\#5\] Add support for PHP 8.1 [\#15](https://github.com/pheature-flags/mezzio-toggle/pull/15) (@kpicaza)
+- \[\#11\] Update PhpStan to version 1 and level 9 [\#12](https://github.com/pheature-flags/mezzio-toggle/pull/12) (@kpicaza)
+
+**Closed issues:**
+
+- \[mezzio-toggle\] update CI matrix PHP versions [\#13](https://github.com/pheature-flags/mezzio-toggle/issues/13)
+
+**Merged pull requests:**
+
+- \[\#13\] Run CI both PHP 7.4 and 8.0 [\#14](https://github.com/pheature-flags/mezzio-toggle/pull/14) (@kpicaza)
+- \[\#3\] Update issue template for bugs [\#9](https://github.com/pheature-flags/mezzio-toggle/pull/9) (@pcs289)
+
 ## [v0.1.3](https://github.com/pheature-flags/mezzio-toggle/tree/v0.1.3) (2021-10-26)
 
 [Full Changelog](https://github.com/pheature-flags/mezzio-toggle/compare/v0.1.2...v0.1.3)

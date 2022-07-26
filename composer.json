@@ -28,7 +28,7 @@
         "icanhazstring/composer-unused": "^0.7.5",
         "infection/infection": "^0.25",
         "pheature/php-sdk": "^0.3",
-        "pheature/toggle-crud-psr7-api": "^0.3",
+        "pheature/toggle-crud-psr7-api": "^0.3 || ^0.4",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpro/grumphp": "^1.0",
         "phpstan/phpstan": "^1.0",

@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0|^8.1",
+        "php": "^7.4|^8.0|^8.1|^8.2",
         "laminas/laminas-diactoros": "^2.6",
         "mezzio/mezzio": "^3.3",
         "mezzio/mezzio-helpers": "^5.4",

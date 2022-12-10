@@ -1,6 +1,15 @@
 # Changelog
 
-## [0.5.0](https://github.com/pheature-flags/mezzio-toggle/tree/0.5.0)
+## [0.7.0](https://github.com/pheature-flags/mezzio-toggle/tree/0.7.0)
+
+[Full Changelog](https://github.com/pheature-flags/mezzio-toggle/compare/0.5.0...0.7.0)
+
+**Merged pull requests:**
+
+- \[\#359\] Add PHP 8.2 support [\#24](https://github.com/pheature-flags/mezzio-toggle/pull/24) (@kpicaza)
+- update dev dependencies [\#22](https://github.com/pheature-flags/mezzio-toggle/pull/22) (@kpicaza)
+
+## [0.5.0](https://github.com/pheature-flags/mezzio-toggle/tree/0.5.0) (2022-08-12)
 
 [Full Changelog](https://github.com/pheature-flags/mezzio-toggle/compare/0.3.0...0.5.0)
 

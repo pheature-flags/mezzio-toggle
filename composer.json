@@ -20,14 +20,13 @@
         "laminas/laminas-diactoros": "^2.6",
         "mezzio/mezzio": "^3.3",
         "mezzio/mezzio-helpers": "^5.4",
-        "pheature/toggle-core": "^0.5",
-        "pheature/toggle-crud-psr11-factories": "^0.5",
-        "pheature/toggle-model": "^0.5"
+        "pheature/toggle-crud-psr11-factories": "^0.7",
+        "pheature/toggle-model": "^0.7"
     },
     "require-dev": {
         "icanhazstring/composer-unused": "^0.8",
-        "pheature/php-sdk": "^0.5",
-        "pheature/toggle-crud-psr7-api": "^0.5",
+        "pheature/php-sdk": "^0.7",
+        "pheature/toggle-crud-psr7-api": "^0.7",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpro/grumphp": "^1.0",
         "phpstan/phpstan": "^1.0",
